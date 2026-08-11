@@ -118,6 +118,31 @@ img { max-width: 100%; display: block; }
 
 .nav-links a:hover { color: var(--amber-bright); }
 
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 100%;
+  height: 1px;
+  background: var(--amber);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+}
+
+.nav-links a:hover::after {
+  transform: scaleX(1);
+}
+
+.nav-links a.active {
+  color: var(--amber-bright);
+}
+
+.nav-links a.active::after {
+  transform: scaleX(1);
+}
+
 .nav-toggle {
   display: none;
   flex-direction: column;
@@ -153,10 +178,68 @@ img { max-width: 100%; display: block; }
   background-size: 48px 48px;
   mask-image: radial-gradient(ellipse 70% 60% at 50% 20%, black 20%, transparent 75%);
   opacity: 0.5;
+  z-index: 0;
+}
+
+.aurora {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.aurora-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.32;
+  will-change: transform;
+}
+
+.aurora-1 {
+  width: 480px; height: 480px;
+  background: var(--teal-400);
+  top: -120px; left: 8%;
+  animation: auroraDrift1 16s ease-in-out infinite;
+}
+
+.aurora-2 {
+  width: 420px; height: 420px;
+  background: var(--amber);
+  top: -60px; right: 10%;
+  animation: auroraDrift2 20s ease-in-out infinite;
+}
+
+.aurora-3 {
+  width: 360px; height: 360px;
+  background: var(--teal-600);
+  top: 120px; left: 45%;
+  animation: auroraDrift3 24s ease-in-out infinite;
+}
+
+@keyframes auroraDrift1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(40px, 30px) scale(1.1); }
+}
+
+@keyframes auroraDrift2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-50px, 20px) scale(0.95); }
+}
+
+@keyframes auroraDrift3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(20px, -40px) scale(1.08); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aurora-blob { animation: none; }
 }
 
 .hero-inner {
   position: relative;
+  z-index: 1;
   max-width: var(--max-width);
   margin: 0 auto;
 }
@@ -201,6 +284,32 @@ img { max-width: 100%; display: block; }
 
 .accent {
   color: var(--amber-bright);
+}
+
+/* Split-text reveal (words animate in via JS-added spans) */
+.split-word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(0.6em);
+  filter: blur(6px);
+  animation: splitReveal 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes splitReveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .split-word {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    animation: none;
+  }
 }
 
 .hero-sub {
@@ -252,6 +361,7 @@ img { max-width: 100%; display: block; }
    ============================================ */
 .section {
   padding: 100px 24px;
+  scroll-margin-top: 76px;
 }
 
 .section-alt {
@@ -376,10 +486,31 @@ img { max-width: 100%; display: block; }
   overflow: hidden;
   background: var(--bg-panel);
   transition: border-color 0.2s ease;
+  position: relative;
+}
+
+.project-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0;
+  background: radial-gradient(320px circle at var(--glow-x, 50%) var(--glow-y, 50%), rgba(227, 168, 87, 0.12), transparent 70%);
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.project-card:hover::before {
+  opacity: 1;
 }
 
 .project-card:hover {
   border-color: var(--border-strong);
+}
+
+.project-media, .project-body {
+  position: relative;
+  z-index: 1;
 }
 
 .project-media {
@@ -544,6 +675,33 @@ img { max-width: 100%; display: block; }
   font-size: 0.78rem;
   color: var(--text-faint);
   border-top: 1px solid var(--border);
+}
+
+/* ============================================
+   SCROLL REVEAL
+   ============================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* stagger project cards slightly */
+.projects-list .reveal:nth-child(2) { transition-delay: 0.06s; }
+.projects-list .reveal:nth-child(3) { transition-delay: 0.12s; }
+.projects-list .reveal:nth-child(4) { transition-delay: 0.18s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
 
 /* ============================================

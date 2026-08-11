@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Miles Natad — Backend-Leaning Full-Stack Developer</title>
-<meta name="description" content="Portfolio of Miles Cellan, BSIT student and freelance developer specializing in Laravel, ASP.NET, and IoT systems.">
+<meta name="description" content="Portfolio of Miles Natad, BSIT student and freelance developer specializing in Laravel, ASP.NET, and IoT systems.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -18,10 +18,10 @@
   <div class="nav-inner">
     <a href="#top" class="nav-brand">MN<span class="nav-brand-dot">.</span></a>
     <nav class="nav-links">
-      <a href="#about">About</a>
-      <a href="#skills">Skills</a>
-      <a href="#projects">Projects</a>
-      <a href="#contact">Contact</a>
+      <a href="#about" data-nav-link="about">About</a>
+      <a href="#skills" data-nav-link="skills">Skills</a>
+      <a href="#projects" data-nav-link="projects">Projects</a>
+      <a href="#contact" data-nav-link="contact">Contact</a>
     </nav>
     <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
       <span></span><span></span><span></span>
@@ -34,9 +34,14 @@
   <!-- HERO -->
   <section class="hero">
     <div class="hero-grid" aria-hidden="true"></div>
+    <div class="aurora" aria-hidden="true">
+      <span class="aurora-blob aurora-1"></span>
+      <span class="aurora-blob aurora-2"></span>
+      <span class="aurora-blob aurora-3"></span>
+    </div>
     <div class="hero-inner">
       <p class="eyebrow"><span class="pulse-dot"></span> BSIT Student &middot; Occidental Mindoro State University</p>
-      <h1 class="hero-title">
+      <h1 class="hero-title" data-split>
         I build systems that<br>
         <span class="accent">track, record, and run</span> real processes.
       </h1>
@@ -52,7 +57,7 @@
   </section>
 
   <!-- ABOUT -->
-  <section class="section" id="about">
+  <section class="section reveal" id="about">
     <div class="section-inner">
       <p class="section-eyebrow">01 — About</p>
       <div class="about-grid">
@@ -92,7 +97,7 @@
   </section>
 
   <!-- SKILLS -->
-  <section class="section section-alt" id="skills">
+  <section class="section section-alt reveal" id="skills">
     <div class="section-inner">
       <p class="section-eyebrow">02 — Skills</p>
       <h2 class="section-title">What I work with</h2>
@@ -132,7 +137,7 @@
   </section>
 
   <!-- PROJECTS -->
-  <section class="section" id="projects">
+  <section class="section reveal" id="projects">
     <div class="section-inner">
       <p class="section-eyebrow">03 — Projects</p>
       <h2 class="section-title">Selected work</h2>
@@ -140,7 +145,7 @@
       <div class="projects-list">
 
         <!-- Capstone -->
-        <article class="project-card">
+        <article class="project-card reveal" data-glow>
           <div class="project-media">
             <img src="assets/images/capstone-placeholder.svg" alt="IoT Student Entry/Exit Monitoring System screenshot placeholder">
             <span class="status-badge status-live">Live</span>
@@ -170,7 +175,7 @@
         </article>
 
         <!-- Zephyr -->
-        <article class="project-card">
+        <article class="project-card reveal" data-glow>
           <div class="project-media">
             <img src="assets/images/zephyr-placeholder.svg" alt="Zephyr delivery app screenshot placeholder">
             <span class="status-badge status-dev">In Development</span>
@@ -197,7 +202,7 @@
         </article>
 
         <!-- POS -->
-        <article class="project-card">
+        <article class="project-card reveal" data-glow>
           <div class="project-media">
             <img src="assets/images/pos-placeholder.svg" alt="Excel POS system screenshot placeholder">
             <span class="status-badge status-client">Freelance</span>
@@ -224,7 +229,7 @@
         </article>
 
         <!-- Reserved: Cybersecurity Research -->
-        <article class="project-card project-card-pending">
+        <article class="project-card project-card-pending reveal" data-glow>
           <div class="project-body project-body-pending">
             <h3>Cybersecurity Awareness Research</h3>
             <p class="project-role">Academic Research &middot; Being Reworked</p>
@@ -240,13 +245,13 @@
   </section>
 
   <!-- CONTACT -->
-  <section class="section section-alt" id="contact">
+  <section class="section section-alt reveal" id="contact">
     <div class="section-inner">
       <p class="section-eyebrow">04 — Contact</p>
       <h2 class="section-title">Let's talk</h2>
       <p class="contact-sub">Open to freelance work, internships, and anything that involves building real systems.</p>
       <div class="contact-links">
-        <a href="mailto:youremail@example.com" class="contact-link">
+        <a href="mailto:mlsnatad@gmail.com" class="contact-link">
           <span class="contact-label">Email</span>
           <span class="contact-value">mlsnatad@gmail.com</span>
         </a>
