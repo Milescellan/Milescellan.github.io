@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Miles Cellan — Backend-Leaning Full-Stack Developer</title>
+<meta name="description" content="Portfolio of Miles Cellan, BSIT student and freelance developer specializing in Laravel, ASP.NET, and IoT systems.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="scan-line" aria-hidden="true"></div>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a href="#top" class="nav-brand">MC<span class="nav-brand-dot">.</span></a>
+    <nav class="nav-links">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-grid" aria-hidden="true"></div>
+    <div class="hero-inner">
+      <p class="eyebrow"><span class="pulse-dot"></span> BSIT Student &middot; Occidental Mindoro State College</p>
+      <h1 class="hero-title">
+        I build systems that<br>
+        <span class="accent">track, record, and run</span> real processes.
+      </h1>
+      <p class="hero-sub">
+        Backend-leaning full-stack developer working across Laravel, ASP.NET, and embedded IoT.
+        Currently deepening my cybersecurity practice alongside coursework.
+      </p>
+      <div class="hero-actions">
+        <a href="#projects" class="btn btn-primary">View Projects</a>
+        <a href="#contact" class="btn btn-ghost">Get in Touch</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="section" id="about">
+    <div class="section-inner">
+      <p class="section-eyebrow">01 — About</p>
+      <div class="about-grid">
+        <div class="about-text">
+          <p>
+            I'm Miles, a 3rd-year BSIT student who splits time between coursework and freelance
+            development work — Laravel and PHP systems, ASP.NET applications, and Excel/VBA tools
+            built for real clients with real deadlines.
+          </p>
+          <p>
+            My strongest ground is backend development: modeling data, wiring up business logic,
+            and getting systems to talk to hardware. My capstone project pairs UHF RFID hardware
+            with a Laravel backend to track student attendance — that intersection of software and
+            physical systems is where I want to keep building.
+          </p>
+          <p>
+            I'm currently expanding into cybersecurity, treating it as a core part of how I build —
+            not an afterthought.
+          </p>
+        </div>
+        <div class="about-meta">
+          <div class="meta-card">
+            <span class="meta-label">Focus</span>
+            <span class="meta-value">Backend &amp; Systems</span>
+          </div>
+          <div class="meta-card">
+            <span class="meta-label">Currently learning</span>
+            <span class="meta-value">Cybersecurity</span>
+          </div>
+          <div class="meta-card">
+            <span class="meta-label">Based in</span>
+            <span class="meta-value">Philippines</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="section section-alt" id="skills">
+    <div class="section-inner">
+      <p class="section-eyebrow">02 — Skills</p>
+      <h2 class="section-title">What I work with</h2>
+
+      <div class="skills-grid">
+
+        <div class="skill-group">
+          <h3>Languages</h3>
+          <ul class="tag-list">
+            <li>Java</li><li>C#</li><li>Python</li><li>C++</li><li>JavaScript</li>
+          </ul>
+        </div>
+
+        <div class="skill-group">
+          <h3>Web &amp; Backend</h3>
+          <ul class="tag-list">
+            <li>Laravel</li><li>PHP</li><li>ASP.NET</li><li>HTML5</li><li>CSS3</li>
+          </ul>
+        </div>
+
+        <div class="skill-group">
+          <h3>Data</h3>
+          <ul class="tag-list">
+            <li>MySQL</li><li>Excel / VBA</li>
+          </ul>
+        </div>
+
+        <div class="skill-group">
+          <h3>Hardware &amp; IoT</h3>
+          <ul class="tag-list">
+            <li>ESP32</li><li>Arduino IDE</li><li>UHF RFID</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="section" id="projects">
+    <div class="section-inner">
+      <p class="section-eyebrow">03 — Projects</p>
+      <h2 class="section-title">Selected work</h2>
+
+      <div class="projects-list">
+
+        <!-- Capstone -->
+        <article class="project-card">
+          <div class="project-media">
+            <img src="assets/images/capstone-placeholder.svg" alt="IoT Student Entry/Exit Monitoring System screenshot placeholder">
+            <span class="status-badge status-live">Live</span>
+          </div>
+          <div class="project-body">
+            <h3>IoT Student Entry/Exit Monitoring System</h3>
+            <p class="project-role">Capstone Project</p>
+            <p class="project-desc">
+              An attendance-tracking system built around UHF RFID hardware. Students, teachers, and
+              admins each get a distinct dashboard. Every entry, exit, and staff login/logout is
+              logged and exportable — giving teachers a verifiable attendance record for
+              documentation and dispute resolution.
+            </p>
+            <ul class="project-highlights">
+              <li>UHF RFID reader (JRD4035) + 860MHz tags on an ESP32, firmware in Arduino IDE</li>
+              <li>Laravel backend with MySQL, three role-based views (student / teacher / admin)</li>
+              <li>SMS notifications via Semaphore API; downloadable entry/exit records</li>
+            </ul>
+            <div class="tag-list tag-list-tech">
+              <span>Laravel</span><span>MySQL</span><span>ESP32</span><span>UHF RFID</span><span>Semaphore SMS</span>
+            </div>
+            <div class="project-links">
+              <a href="#" class="link-arrow">Live Demo &rarr;</a>
+              <a href="#" class="link-arrow">GitHub &rarr;</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Zephyr -->
+        <article class="project-card">
+          <div class="project-media">
+            <img src="assets/images/zephyr-placeholder.svg" alt="Zephyr delivery app screenshot placeholder">
+            <span class="status-badge status-dev">In Development</span>
+          </div>
+          <div class="project-body">
+            <h3>Zephyr</h3>
+            <p class="project-role">Personal Project</p>
+            <p class="project-desc">
+              A delivery service web and mobile app, currently in active development. Built the
+              login/signup flow first — including a responsive flip-card transition between the
+              two forms — before moving into the core ordering flow.
+            </p>
+            <ul class="project-highlights">
+              <li>Responsive flip-animation transition between login and signup</li>
+              <li>Planned: order flow, delivery tracking, mobile-first layout</li>
+            </ul>
+            <div class="tag-list tag-list-tech">
+              <span>HTML5</span><span>CSS3</span><span>JavaScript</span>
+            </div>
+            <div class="project-links">
+              <a href="#" class="link-arrow">GitHub &rarr;</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- POS -->
+        <article class="project-card">
+          <div class="project-media">
+            <img src="assets/images/pos-placeholder.svg" alt="Excel POS system screenshot placeholder">
+            <span class="status-badge status-client">Freelance</span>
+          </div>
+          <div class="project-body">
+            <h3>Excel POS System</h3>
+            <p class="project-role">Freelance Client Work</p>
+            <p class="project-desc">
+              A point-of-sale system built in Excel/VBA for a paying client — a sari-sari
+              store-themed tool delivered end-to-end for their own school requirement.
+              Handled the full engagement: requirements, build, and delivery.
+            </p>
+            <ul class="project-highlights">
+              <li>VBA-driven sales entry, inventory, and totals</li>
+              <li>Delivered on a fixed scope and timeline for a paying client</li>
+            </ul>
+            <div class="tag-list tag-list-tech">
+              <span>Excel</span><span>VBA</span>
+            </div>
+            <div class="project-links">
+              <span class="link-note">Demo video coming soon</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Reserved: Cybersecurity Research -->
+        <article class="project-card project-card-pending">
+          <div class="project-body project-body-pending">
+            <h3>Cybersecurity Awareness Research</h3>
+            <p class="project-role">Academic Research &middot; Being Reworked</p>
+            <p class="project-desc">
+              A research study on cybersecurity awareness, currently being redone with fresh,
+              interview-based data. Coming soon.
+            </p>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section section-alt" id="contact">
+    <div class="section-inner">
+      <p class="section-eyebrow">04 — Contact</p>
+      <h2 class="section-title">Let's talk</h2>
+      <p class="contact-sub">Open to freelance work, internships, and anything that involves building real systems.</p>
+      <div class="contact-links">
+        <a href="mailto:youremail@example.com" class="contact-link">
+          <span class="contact-label">Email</span>
+          <span class="contact-value">youremail@example.com</span>
+        </a>
+        <a href="https://github.com/Milescellan" target="_blank" rel="noopener" class="contact-link">
+          <span class="contact-label">GitHub</span>
+          <span class="contact-value">github.com/Milescellan</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <p>&copy; <span id="year"></span> Miles Cellan. Built with HTML, CSS &amp; JavaScript.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
