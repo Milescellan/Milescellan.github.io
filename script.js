@@ -197,3 +197,37 @@ if (carouselTrack) {
   render();
   startAutoplay();
 }
+
+// Contact form: submit via fetch so the page doesn't redirect to Formspree
+const contactForm = document.getElementById('contactForm');
+
+if (contactForm) {
+  const formStatus = document.getElementById('formStatus');
+
+  contactForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    formStatus.textContent = 'Sending...';
+    formStatus.className = 'form-status';
+
+    try {
+      const response = await fetch(contactForm.action, {
+        method: 'POST',
+        body: new FormData(contactForm),
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (response.ok) {
+        formStatus.textContent = "Thanks! I'll get back to you soon.";
+        formStatus.classList.add('form-status-success');
+        contactForm.reset();
+      } else {
+        formStatus.textContent = 'Something went wrong. Please try again or email me directly.';
+        formStatus.classList.add('form-status-error');
+      }
+    } catch (err) {
+      console.error('Contact form submission failed:', err);
+      formStatus.textContent = 'Something went wrong. Please try again or email me directly.';
+      formStatus.classList.add('form-status-error');
+    }
+  });
+}

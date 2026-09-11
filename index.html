@@ -395,15 +395,35 @@
       <p class="section-eyebrow">05 - Contact</p>
       <h2 class="section-title">Let's talk</h2>
       <p class="contact-sub">Open to freelance work, internships, and anything that involves building real systems.</p>
-      <div class="contact-links">
-        <a href="mailto:natadmiles8@gmail.com" class="contact-link">
-          <span class="contact-label">Email</span>
-          <span class="contact-value">natadmiles8@gmail.com</span>
-        </a>
-        <a href="https://github.com/Milescellan" target="_blank" rel="noopener" class="contact-link">
-          <span class="contact-label">GitHub</span>
-          <span class="contact-value">github.com/Milescellan</span>
-        </a>
+
+      <div class="contact-grid">
+        <form class="contact-form" id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+          <div class="form-row">
+            <label for="cf-name">Name</label>
+            <input type="text" id="cf-name" name="name" autocomplete="name" required>
+          </div>
+          <div class="form-row">
+            <label for="cf-email">Email</label>
+            <input type="email" id="cf-email" name="email" autocomplete="email" required>
+          </div>
+          <div class="form-row">
+            <label for="cf-message">Message</label>
+            <textarea id="cf-message" name="message" rows="5" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Send Message</button>
+          <output class="form-status" id="formStatus" aria-live="polite"></output>
+        </form>
+
+        <div class="contact-links">
+          <a href="mailto:natadmiles8@gmail.com" class="contact-link">
+            <span class="contact-label">Email</span>
+            <span class="contact-value">natadmiles8@gmail.com</span>
+          </a>
+          <a href="https://github.com/Milescellan" target="_blank" rel="noopener" class="contact-link">
+            <span class="contact-label">GitHub</span>
+            <span class="contact-value">github.com/Milescellan</span>
+          </a>
+        </div>
       </div>
     </div>
   </section>
