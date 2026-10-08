@@ -28,6 +28,23 @@
 
 html { scroll-behavior: smooth; }
 
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 1000;
+  background: var(--amber);
+  color: #14100a;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  padding: 12px 20px;
+  border-radius: 0 0 var(--radius) 0;
+}
+
+.skip-link:focus {
+  left: 0;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }

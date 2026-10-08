@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Page Not Found - Miles Natad</title>
+<link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+  .not-found {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 24px;
+  }
+  .not-found-code {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(4rem, 15vw, 8rem);
+    color: var(--amber-bright);
+    line-height: 1;
+  }
+  .not-found-title {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.4rem;
+    margin: 16px 0 12px;
+  }
+  .not-found-sub {
+    color: var(--text-muted);
+    max-width: 420px;
+    margin-bottom: 32px;
+  }
+</style>
+</head>
+<body>
+<div class="scan-line" aria-hidden="true"></div>
+<div class="not-found">
+  <p class="not-found-code">404</p>
+  <h1 class="not-found-title">This page went missing.</h1>
+  <p class="not-found-sub">No RFID tag logged an entry for this path. Let's get you back to known territory.</p>
+  <a href="/" class="btn btn-primary">Back to Home</a>
+</div>
+</body>
+</html>
