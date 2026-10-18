@@ -56,6 +56,10 @@ html { scroll-behavior: smooth; }
     animation-duration: 40s !important;
     animation-iteration-count: infinite !important;
   }
+
+  .carousel-track {
+    transition-duration: 0.9s !important;
+  }
 }
 
 body {
@@ -73,29 +77,6 @@ img { max-width: 100%; display: block; }
 :focus-visible {
   outline: 2px solid var(--amber);
   outline-offset: 3px;
-}
-
-/* ============================================
-   SIGNATURE: RFID scan-line sweep
-   ============================================ */
-.scan-line {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 2px;
-  background: linear-gradient(90deg, transparent, var(--amber-bright), transparent);
-  box-shadow: 0 0 12px 2px var(--amber);
-  opacity: 0.55;
-  z-index: 999;
-  pointer-events: none;
-  animation: scanSweep 7s ease-in-out infinite;
-}
-
-@keyframes scanSweep {
-  0%   { top: 0; opacity: 0; }
-  4%   { opacity: 0.55; }
-  48%  { opacity: 0.55; }
-  52%  { top: 100vh; opacity: 0; }
-  100% { top: 100vh; opacity: 0; }
 }
 
 /* ============================================
@@ -628,7 +609,7 @@ img { max-width: 100%; display: block; }
 
 .carousel-track {
   display: flex;
-  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform 0.9s ease-in-out;
 }
 
 .project-slide {

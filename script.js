@@ -130,22 +130,48 @@ if (carouselTrack) {
   });
   const dots = Array.from(dotsWrap.children);
 
-  function render() {
+  // Clone of slide 1 at the end lets last -> first keep sliding left.
+  const count = slides.length;
+  const firstClone = slides[0].cloneNode(true);
+  firstClone.setAttribute('aria-hidden', 'true');
+  carouselTrack.appendChild(firstClone);
+
+  function render(animate = true) {
+    if (animate) {
+      carouselTrack.style.removeProperty('transition');
+    } else {
+      carouselTrack.style.setProperty('transition', 'none', 'important');
+    }
     carouselTrack.style.transform = `translateX(-${current * 100}%)`;
-    dots.forEach((d, i) => d.classList.toggle('active', i === current));
+    if (!animate) carouselTrack.getBoundingClientRect();
+    dots.forEach((d, i) => d.classList.toggle('active', i === current % count));
   }
 
   function goTo(index, userInitiated) {
-    current = (index + slides.length) % slides.length;
+    current = index;
     render();
     if (userInitiated) restartAutoplay();
   }
 
-  function next(userInitiated) { goTo(current + 1, userInitiated); }
-  function prev(userInitiated) { goTo(current - 1, userInitiated); }
+  function next(userInitiated) {
+    if (current >= count) { current = 0; render(false); }
+    goTo(current + 1, userInitiated);
+  }
+
+  function prev(userInitiated) {
+    if (current <= 0) { current = count; render(false); }
+    goTo(current - 1, userInitiated);
+  }
+
+  carouselTrack.addEventListener('transitionend', (e) => {
+    if (e.target === carouselTrack && current === count) {
+      current = 0;
+      render(false);
+    }
+  });
 
   function startAutoplay() {
-    if (prefersReducedMotion || slides.length < 2) return;
+    if (slides.length < 2) return;
     autoplayTimer = setInterval(() => next(false), AUTOPLAY_MS);
   }
 
