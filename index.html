@@ -154,6 +154,7 @@
           </p>
         </div>
         <div class="about-meta">
+          <img class="about-photo" src="assets/images/portrait.webp" alt="Miles Natad" width="600" height="720">
           <div class="meta-card">
             <span class="meta-label">Focus</span>
             <span class="meta-value">Backend &amp; Systems</span>
@@ -224,9 +225,9 @@
         <div class="carousel-track" id="carouselTrack">
 
         <!-- Capstone -->
-        <article class="project-card project-slide" data-glow>
+        <article class="project-card project-slide" data-glow data-more="capstone">
           <div class="project-media">
-            <img src="assets/images/capstone-dashboard.png" alt="RFID monitoring admin dashboard with daily entry and exit counts and a 7-day chart" style="object-position: left top">
+            <img src="assets/images/capstone-dashboard.webp" alt="RFID monitoring admin dashboard with daily entry and exit counts and a 7-day chart" style="object-position: left top">
             <span class="status-badge status-live">Live</span>
           </div>
           <div class="project-body">
@@ -247,15 +248,16 @@
               <span><img src="assets/icons/laravel.svg" class="tech-tag-icon" alt="">Laravel</span><span><img src="assets/icons/mysql.svg" class="tech-tag-icon" alt="">MySQL</span><span><img src="assets/icons/espressif.svg" class="tech-tag-icon" alt="">ESP32</span><span>UHF RFID</span><span>Semaphore SMS</span>
             </div>
             <div class="project-links">
-              <span class="link-note">Deployed for OMSC. Private repo, demo on request.</span>
+              <button type="button" class="link-arrow project-more-btn">Screenshots &amp; details &rarr;</button>
+              <span class="link-note">Private repo, demo on request.</span>
             </div>
           </div>
         </article>
 
         <!-- Thrive -->
-        <article class="project-card project-slide" data-glow>
+        <article class="project-card project-slide" data-glow data-more="thrive">
           <div class="project-media">
-            <img src="assets/images/thrive.png" alt="Thrive dashboard showing balance, cash flow chart, and spending by category" style="object-position: left top">
+            <img src="assets/images/thrive-dashboard.webp" alt="Thrive dashboard showing balance, cash flow chart, and spending by category" style="object-position: left top">
             <span class="status-badge status-live">In Use</span>
           </div>
           <div class="project-body">
@@ -275,6 +277,7 @@
               <span><img src="assets/icons/react.svg" class="tech-tag-icon" alt="">React</span><span><img src="assets/icons/nodejs.svg" class="tech-tag-icon" alt="">Node.js</span><span>Express</span><span><img src="assets/icons/sqlite.svg" class="tech-tag-icon" alt="">SQLite</span>
             </div>
             <div class="project-links">
+              <button type="button" class="link-arrow project-more-btn">Screenshots &amp; details &rarr;</button>
               <a href="https://github.com/Milescellan/budget-tracker" target="_blank" rel="noopener" class="link-arrow">GitHub &rarr;</a>
             </div>
           </div>
@@ -283,7 +286,7 @@
         <!-- Personal Karaoke -->
         <article class="project-card project-slide" data-glow>
           <div class="project-media">
-            <img src="assets/images/karaoke.png" alt="Karaoke room with a connected guest, chat, a playing karaoke video, and synced lyrics" style="object-position: center top">
+            <img src="assets/images/karaoke.webp" alt="Karaoke room with a connected guest, chat, a playing karaoke video, and synced lyrics" style="object-position: center top">
             <span class="status-badge status-live">Complete</span>
           </div>
           <div class="project-body">
@@ -349,7 +352,7 @@ room 204, Dec 22 to 24
         <!-- POS -->
         <article class="project-card project-slide" data-glow>
           <div class="project-media">
-            <img src="assets/images/pos.png" alt="G4 Store Excel POS with a sample order, totals, and change computed" style="object-position: right top">
+            <img src="assets/images/pos.webp" alt="G4 Store Excel POS with a sample order, totals, and change computed" style="object-position: right top">
             <span class="status-badge status-client">Freelance</span>
           </div>
           <div class="project-body">
@@ -506,6 +509,46 @@ room 204, Dec 22 to 24
       </div>
     </div>
   </section>
+
+  <dialog class="project-dialog" id="projectDialog" aria-labelledby="projectDialogTitle">
+    <button type="button" class="dialog-close" id="projectDialogClose" aria-label="Close">&times;</button>
+    <div class="dialog-body" id="projectDialogBody"></div>
+  </dialog>
+
+  <template id="more-capstone">
+    <h3>IoT Student Entry/Exit Monitoring System</h3>
+    <p class="project-role">Capstone Project</p>
+    <div class="dialog-gallery">
+      <figure><img src="assets/images/capstone-landing.webp" alt="Public landing page with a live gate summary" loading="lazy"><figcaption>Public landing page with a live gate summary</figcaption></figure>
+      <figure><img src="assets/images/capstone-dashboard.webp" alt="Admin dashboard" loading="lazy"><figcaption>Admin dashboard: today's entries, exits, and the last 7 days</figcaption></figure>
+      <figure><img src="assets/images/capstone-analytics.webp" alt="Analytics page with date range and export" loading="lazy"><figcaption>Analytics with a date range, busiest hours, and export</figcaption></figure>
+      <figure><img src="assets/images/capstone-teacher.webp" alt="Teacher portal dashboard" loading="lazy"><figcaption>Teacher portal, scoped to their own students</figcaption></figure>
+    </div>
+    <ul class="project-highlights">
+      <li>Gate kiosk shows each entry or exit with the student's photo, and rejects unregistered cards</li>
+      <li>Admins handle unrecognized scans, register replacement cards, and import students in bulk</li>
+      <li>Audit logs for every staff action, plus downloadable employee DTRs and database backups</li>
+      <li>Two-factor authentication and a data privacy notice on first sign-in</li>
+    </ul>
+  </template>
+
+  <template id="more-thrive">
+    <h3>Thrive</h3>
+    <p class="project-role">Personal Project</p>
+    <div class="dialog-gallery">
+      <figure><img src="assets/images/thrive-dashboard.webp" alt="Thrive dashboard" loading="lazy"><figcaption>Dashboard: balance, cash flow, and spending by category</figcaption></figure>
+      <figure><img src="assets/images/thrive-transactions.webp" alt="Transactions list with filters" loading="lazy"><figcaption>Transactions with type, month, category, and search filters</figcaption></figure>
+      <figure><img src="assets/images/thrive-budgets.webp" alt="Monthly budgets with progress bars" loading="lazy"><figcaption>Monthly budgets that warn when a category runs low or goes over</figcaption></figure>
+      <figure><img src="assets/images/thrive-reports.webp" alt="Yearly report with charts" loading="lazy"><figcaption>Year report: month by month and where the money went</figcaption></figure>
+    </div>
+    <ul class="project-highlights">
+      <li>Shared books with equal, single, or custom splits and a settle-up balance</li>
+      <li>Recurring monthly entries that catch up on months the app was closed</li>
+      <li>Wallets and transfers, savings goals, and an admin page for the group</li>
+      <li>Money stored as integer centavos, so totals never drift</li>
+    </ul>
+    <p class="link-note">Screenshots use sample data.</p>
+  </template>
 
 </main>
 

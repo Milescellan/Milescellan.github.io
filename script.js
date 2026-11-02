@@ -223,6 +223,32 @@ if (carouselTrack) {
   startAutoplay();
 }
 
+// Project details dialog: fills one shared <dialog> from the card's <template>
+const projectDialog = document.getElementById('projectDialog');
+
+if (projectDialog) {
+  const dialogBody = document.getElementById('projectDialogBody');
+
+  const openProject = (id) => {
+    dialogBody.replaceChildren(document.getElementById(`more-${id}`).content.cloneNode(true));
+    dialogBody.querySelector('h3').id = 'projectDialogTitle';
+    projectDialog.showModal();
+  };
+
+  // Includes the carousel's cloned first slide, so it works mid-loop too.
+  document.querySelectorAll('[data-more]').forEach((card) => {
+    const open = () => openProject(card.dataset.more);
+    card.querySelector('.project-more-btn').addEventListener('click', open);
+    card.querySelector('.project-media').addEventListener('click', open);
+  });
+
+  document.getElementById('projectDialogClose').addEventListener('click', () => projectDialog.close());
+  // The dialog has no padding, so a click landing on it directly is a backdrop click.
+  projectDialog.addEventListener('click', (e) => {
+    if (e.target === projectDialog) projectDialog.close();
+  });
+}
+
 // Contact form: submit via fetch so the page doesn't redirect to Formspree
 const contactForm = document.getElementById('contactForm');
 
