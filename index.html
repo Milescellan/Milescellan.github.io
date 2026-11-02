@@ -226,7 +226,7 @@
         <!-- Capstone -->
         <article class="project-card project-slide" data-glow>
           <div class="project-media">
-            <img src="assets/images/capstone.png" alt="IoT Student Entry/Exit Monitoring System login screen">
+            <img src="assets/images/capstone-dashboard.png" alt="RFID monitoring admin dashboard with daily entry and exit counts and a 7-day chart" style="object-position: left top">
             <span class="status-badge status-live">Live</span>
           </div>
           <div class="project-body">
@@ -247,35 +247,101 @@
               <span><img src="assets/icons/laravel.svg" class="tech-tag-icon" alt="">Laravel</span><span><img src="assets/icons/mysql.svg" class="tech-tag-icon" alt="">MySQL</span><span><img src="assets/icons/espressif.svg" class="tech-tag-icon" alt="">ESP32</span><span>UHF RFID</span><span>Semaphore SMS</span>
             </div>
             <div class="project-links">
-              <a href="#" class="link-arrow">Live Demo &rarr;</a>
-              <a href="#" class="link-arrow">GitHub &rarr;</a>
+              <span class="link-note">Deployed for OMSC. Private repo, demo on request.</span>
             </div>
           </div>
         </article>
 
-        <!-- Zephyr -->
+        <!-- Thrive -->
         <article class="project-card project-slide" data-glow>
           <div class="project-media">
-            <img src="assets/images/zephyr-placeholder.svg" alt="Zephyr delivery app screenshot placeholder" loading="lazy">
-            <span class="status-badge status-dev">In Development</span>
+            <img src="assets/images/thrive.png" alt="Thrive dashboard showing balance, cash flow chart, and spending by category" loading="lazy" style="object-position: left top">
+            <span class="status-badge status-live">In Use</span>
           </div>
           <div class="project-body">
-            <h3>Zephyr</h3>
+            <h3>Thrive</h3>
             <p class="project-role">Personal Project</p>
             <p class="project-desc">
-              A delivery service web, currently in active development. Built the
-              login/signup flow first, including a responsive flip-card transition between the
-              two forms, before moving into the core ordering flow.
+              A self-hosted money tracker for a small group. Budgets, shared books with split
+              expenses, recurring transactions, and receipt scanning, with all data in one
+              SQLite file.
             </p>
             <ul class="project-highlights">
-              <li>Responsive flip-animation transition between login and signup</li>
-              <li>Planned: order flow, delivery tracking</li>
+              <li>Accounts with scrypt passwords, httpOnly sessions, sign-in lockout, invite-only sign-up</li>
+              <li>Receipt reading with Claude, falling back to offline Tesseract OCR</li>
+              <li>Excel import/export, daily backups, and unit tests for the money logic</li>
             </ul>
             <div class="tag-list tag-list-tech">
-              <span><img src="assets/icons/html5.svg" class="tech-tag-icon" alt="">HTML5</span><span><img src="assets/icons/css3.svg" class="tech-tag-icon" alt="">CSS3</span><span><img src="assets/icons/javascript.svg" class="tech-tag-icon" alt="">JavaScript</span>
+              <span><img src="assets/icons/react.svg" class="tech-tag-icon" alt="">React</span><span><img src="assets/icons/nodejs.svg" class="tech-tag-icon" alt="">Node.js</span><span>Express</span><span><img src="assets/icons/sqlite.svg" class="tech-tag-icon" alt="">SQLite</span>
             </div>
             <div class="project-links">
-              <a href="#" class="link-arrow">GitHub &rarr;</a>
+              <a href="https://github.com/Milescellan/budget-tracker" target="_blank" rel="noopener" class="link-arrow">GitHub &rarr;</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Personal Karaoke -->
+        <article class="project-card project-slide" data-glow>
+          <div class="project-media">
+            <img src="assets/images/karaoke.png" alt="Personal Karaoke start screen with name field and create or join room options" loading="lazy">
+            <span class="status-badge status-live">Complete</span>
+          </div>
+          <div class="project-body">
+            <h3>Personal Karaoke</h3>
+            <p class="project-role">Personal Project</p>
+            <p class="project-desc">
+              A real-time karaoke room for up to 6 friends. Everyone watches the same YouTube
+              video in sync, follows the same lyrics, and sings together on a live call.
+            </p>
+            <ul class="project-highlights">
+              <li>Synced playback with server-held state and drift correction</li>
+              <li>WebRTC voice and video call with a TURN fallback for strict networks</li>
+              <li>Shared queue, time-synced LRC lyrics, chat, and in-browser recording</li>
+            </ul>
+            <div class="tag-list tag-list-tech">
+              <span><img src="assets/icons/react.svg" class="tech-tag-icon" alt="">React</span><span><img src="assets/icons/nodejs.svg" class="tech-tag-icon" alt="">Node.js</span><span>Socket.IO</span><span>WebRTC</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/Milescellan/personal-karaoke" target="_blank" rel="noopener" class="link-arrow">GitHub &rarr;</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Hotel Booking API -->
+        <article class="project-card project-slide" data-glow>
+          <div class="project-media project-media-code">
+            <pre class="project-code" aria-label="Real API response: a second booking for overlapping dates is rejected"><code><span class="code-dim">POST /api/bookings</span>
+room 204, Dec 20 to 23
+<span class="code-ok">201 Created</span>  nights: 3, total_price: "10500.00"
+
+<span class="code-dim">POST /api/bookings</span>
+room 204, Dec 22 to 24
+<span class="code-err">422 Unprocessable Content</span>
+{
+  "errors": {
+    "room_id": ["This room is already booked
+                 for the selected dates."]
+  }
+}</code></pre>
+            <span class="status-badge status-client">Internship</span>
+          </div>
+          <div class="project-body">
+            <h3>Hotel Booking API</h3>
+            <p class="project-role">CertiCode Internship</p>
+            <p class="project-desc">
+              A REST API for hotel rooms and bookings. It blocks double-booking, searches rooms
+              free for a date range, prices the stay on the server, and emails the guest.
+            </p>
+            <ul class="project-highlights">
+              <li>Overlap check rejects bookings that clash with an active one</li>
+              <li>Form Request validation and API Resources for consistent JSON</li>
+              <li>Queued confirmation email; cancel keeps history instead of deleting</li>
+            </ul>
+            <div class="tag-list tag-list-tech">
+              <span><img src="assets/icons/laravel.svg" class="tech-tag-icon" alt="">Laravel</span><span><img src="assets/icons/php.svg" class="tech-tag-icon" alt="">PHP</span><span><img src="assets/icons/sqlite.svg" class="tech-tag-icon" alt="">SQLite</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/Milescellan/hotel-booking-api" target="_blank" rel="noopener" class="link-arrow">GitHub &rarr;</a>
             </div>
           </div>
         </article>
