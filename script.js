@@ -117,7 +117,7 @@ if (carouselTrack) {
   const dotsWrap = document.getElementById('carouselDots');
   const prevBtn = document.getElementById('carouselPrev');
   const nextBtn = document.getElementById('carouselNext');
-  const AUTOPLAY_MS = 6000;
+  const AUTOPLAY_MS = 8000;
   let current = 0;
   let autoplayTimer = null;
 
@@ -150,7 +150,7 @@ if (carouselTrack) {
   function goTo(index, userInitiated) {
     current = index;
     render();
-    if (userInitiated) restartAutoplay();
+    if (userInitiated) startAutoplay();
   }
 
   function next(userInitiated) {
@@ -170,8 +170,12 @@ if (carouselTrack) {
     }
   });
 
+  let hovering = false;
+
+  // Always clears first, so there is never more than one timer running.
   function startAutoplay() {
-    if (slides.length < 2) return;
+    clearInterval(autoplayTimer);
+    if (hovering || count < 2) return;
     autoplayTimer = setInterval(() => next(false), AUTOPLAY_MS);
   }
 
@@ -179,17 +183,12 @@ if (carouselTrack) {
     clearInterval(autoplayTimer);
   }
 
-  function restartAutoplay() {
-    stopAutoplay();
-    startAutoplay();
-  }
-
   prevBtn.addEventListener('click', () => prev(true));
   nextBtn.addEventListener('click', () => next(true));
 
   const carouselRoot = prevBtn.closest('.project-carousel');
-  carouselRoot.addEventListener('mouseenter', stopAutoplay);
-  carouselRoot.addEventListener('mouseleave', startAutoplay);
+  carouselRoot.addEventListener('mouseenter', () => { hovering = true; stopAutoplay(); });
+  carouselRoot.addEventListener('mouseleave', () => { hovering = false; startAutoplay(); });
 
   // Touch / pointer swipe
   let dragStartX = null;
