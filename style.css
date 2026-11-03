@@ -790,40 +790,95 @@ body:has(.project-dialog[open]) { overflow: hidden; }
 }
 
 .dialog-gallery {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px 16px;
-  margin: 20px 0 24px;
+  position: relative;
+  /* Width capped so the 16:10 image stays under ~52% of the screen height. */
+  max-width: min(100%, calc(52dvh * 1.6));
+  margin: 20px auto 24px;
 }
 
 .dialog-gallery figure {
+  position: relative;
   margin: 0;
-  scroll-snap-align: start;
 }
 
+/* Fixed 16:10 stage so tall and wide shots don't make the dialog jump. */
 .dialog-gallery img {
+  display: block;
   width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: contain;
+  background: var(--bg-deep);
   border-radius: 8px;
   border: 1px solid var(--border);
+  cursor: zoom-in;
+}
+
+.dialog-gallery img:fullscreen {
+  border: 0;
+  border-radius: 0;
+  cursor: zoom-out;
+}
+
+.dialog-code {
+  margin: 0;
+  padding: 24px;
+  background: var(--bg-deep);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  white-space: pre-wrap;
 }
 
 .dialog-gallery figcaption {
-  margin-top: 8px;
+  margin-top: 10px;
   font-family: var(--font-mono);
   font-size: 0.76rem;
   color: var(--text-muted);
 }
 
+/* Same 16:10 box as the image, so the arrows center on the image, not the caption. */
+.gallery-nav {
+  position: absolute;
+  inset: 0 0 auto;
+  aspect-ratio: 16 / 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 12px;
+  pointer-events: none;
+}
+
+.gallery-arrow,
+.gallery-expand {
+  pointer-events: auto;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: rgba(15, 31, 29, 0.85);
+  color: var(--text-primary);
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.gallery-arrow:hover,
+.gallery-expand:hover {
+  border-color: var(--border-strong);
+  color: var(--amber-bright);
+}
+
+.gallery-expand {
+  position: absolute;
+  z-index: 1;
+  top: 12px;
+  right: 12px;
+}
+
+.gallery-dots { margin-top: -8px; margin-bottom: 20px; }
+
 @media (max-width: 640px) {
   .dialog-body { padding: 24px 20px; }
-  .dialog-gallery {
-    grid-template-columns: none;
-    grid-auto-flow: column;
-    grid-auto-columns: 85%;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    padding-bottom: 8px;
-  }
+  .gallery-arrow { width: 34px; height: 34px; }
 }
 
 .code-dim { color: var(--text-faint); }

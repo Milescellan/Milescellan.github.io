@@ -229,11 +229,73 @@ const projectDialog = document.getElementById('projectDialog');
 if (projectDialog) {
   const dialogBody = document.getElementById('projectDialogBody');
 
+  let step = null; // moves the open gallery by +1 / -1; null when it has one item
+
+  const makeButton = (className, label, html) => {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = className;
+    btn.setAttribute('aria-label', label);
+    btn.innerHTML = html;
+    return btn;
+  };
+
+  // Turns the template's list of <figure>s into a one-at-a-time slider.
+  const setupGallery = (gallery) => {
+    step = null;
+    if (!gallery) return;
+    const figures = Array.from(gallery.querySelectorAll('figure'));
+    let current = 0;
+    const dots = document.createElement('div');
+    dots.className = 'carousel-dots gallery-dots';
+
+    const show = (index) => {
+      current = (index + figures.length) % figures.length;
+      figures.forEach((fig, i) => { fig.hidden = i !== current; });
+      Array.from(dots.children).forEach((dot, i) => dot.classList.toggle('active', i === current));
+    };
+
+    figures.forEach((fig) => {
+      const img = fig.querySelector('img');
+      if (!img) return;
+      const expand = () => img.requestFullscreen?.();
+      img.addEventListener('click', expand);
+      fig.prepend(makeButton('gallery-expand', 'View full screen', '&#x2922;'));
+      fig.firstChild.addEventListener('click', expand);
+    });
+
+    if (figures.length > 1) {
+      step = (delta) => show(current + delta);
+      const prev = makeButton('gallery-arrow gallery-prev', 'Previous image', '&larr;');
+      const next = makeButton('gallery-arrow gallery-next', 'Next image', '&rarr;');
+      prev.addEventListener('click', () => step(-1));
+      next.addEventListener('click', () => step(1));
+      const nav = document.createElement('div');
+      nav.className = 'gallery-nav';
+      nav.append(prev, next);
+      gallery.append(nav);
+      figures.forEach((_, i) => {
+        const dot = makeButton('carousel-dot', `Show image ${i + 1}`, '');
+        dot.addEventListener('click', () => show(i));
+        dots.append(dot);
+      });
+      gallery.after(dots);
+    }
+    show(0);
+  };
+
   const openProject = (id) => {
     dialogBody.replaceChildren(document.getElementById(`more-${id}`).content.cloneNode(true));
     dialogBody.querySelector('h3').id = 'projectDialogTitle';
+    setupGallery(dialogBody.querySelector('.dialog-gallery'));
     projectDialog.showModal();
   };
+
+  projectDialog.addEventListener('keydown', (e) => {
+    if (!step || document.fullscreenElement) return;
+    if (e.key === 'ArrowRight') step(1);
+    if (e.key === 'ArrowLeft') step(-1);
+  });
 
   // Includes the carousel's cloned first slide, so it works mid-loop too.
   document.querySelectorAll('[data-more]').forEach((card) => {

@@ -271,7 +271,7 @@
         </article>
 
         <!-- Personal Karaoke -->
-        <article class="project-card project-slide" data-glow>
+        <article class="project-card project-slide" data-glow data-more="karaoke">
           <div class="project-media">
             <img src="assets/images/karaoke.webp" alt="Karaoke room with a connected guest, chat, a playing karaoke video, and synced lyrics" style="object-position: center top">
           </div>
@@ -291,13 +291,14 @@
               <span><img src="assets/icons/react.svg" class="tech-tag-icon" alt="">React</span><span><img src="assets/icons/nodejs.svg" class="tech-tag-icon" alt="">Node.js</span><span>Socket.IO</span><span>WebRTC</span>
             </div>
             <div class="project-links">
+              <button type="button" class="link-arrow project-more-btn">Screenshots &amp; details &rarr;</button>
               <a href="https://github.com/Milescellan/personal-karaoke" target="_blank" rel="noopener" class="link-arrow">GitHub &rarr;</a>
             </div>
           </div>
         </article>
 
         <!-- Hotel Booking API -->
-        <article class="project-card project-slide" data-glow>
+        <article class="project-card project-slide" data-glow data-more="hotel">
           <div class="project-media project-media-code">
             <pre class="project-code" aria-label="Real API response: a second booking for overlapping dates is rejected"><code><span class="code-dim">POST /api/bookings</span>
 room 204, Dec 20 to 23
@@ -329,13 +330,14 @@ room 204, Dec 22 to 24
               <span><img src="assets/icons/laravel.svg" class="tech-tag-icon" alt="">Laravel</span><span><img src="assets/icons/php.svg" class="tech-tag-icon" alt="">PHP</span><span><img src="assets/icons/sqlite.svg" class="tech-tag-icon" alt="">SQLite</span>
             </div>
             <div class="project-links">
+              <button type="button" class="link-arrow project-more-btn">Example &amp; details &rarr;</button>
               <a href="https://github.com/Milescellan/hotel-booking-api" target="_blank" rel="noopener" class="link-arrow">GitHub &rarr;</a>
             </div>
           </div>
         </article>
 
         <!-- POS -->
-        <article class="project-card project-slide" data-glow>
+        <article class="project-card project-slide" data-glow data-more="pos">
           <div class="project-media">
             <img src="assets/images/pos.webp" alt="G4 Store Excel POS with a sample order, totals, and change computed" style="object-position: right top">
           </div>
@@ -353,6 +355,9 @@ room 204, Dec 22 to 24
             </ul>
             <div class="tag-list tag-list-tech">
               <span><img src="assets/icons/excel.svg" class="tech-tag-icon" alt="">Excel</span><span>VBA</span>
+            </div>
+            <div class="project-links">
+              <button type="button" class="link-arrow project-more-btn">Screenshots &amp; details &rarr;</button>
             </div>
           </div>
         </article>
@@ -530,6 +535,64 @@ room 204, Dec 22 to 24
       <li>Money stored as integer centavos, so totals never drift</li>
     </ul>
     <p class="link-note">Screenshots use sample data.</p>
+  </template>
+
+  <template id="more-karaoke">
+    <h3>Personal Karaoke</h3>
+    <p class="project-role">Personal Project</p>
+    <div class="dialog-gallery">
+      <figure><img src="assets/images/karaoke.webp" alt="Karaoke room with a live call, chat, video, and synced lyrics" loading="lazy"><figcaption>A room mid-song: live call, chat, the karaoke video, and synced lyrics</figcaption></figure>
+      <figure><img src="assets/images/karaoke-home.webp" alt="Start screen to create or join a room" loading="lazy"><figcaption>Create a room or join one with a 6-character code</figcaption></figure>
+    </div>
+    <ul class="project-highlights">
+      <li>The server holds the playback state; clients only seek when they drift more than 3 seconds</li>
+      <li>Mesh WebRTC call for up to 6 people, with a public TURN fallback for strict networks</li>
+      <li>Song search through the YouTube Data API, lyrics from LRCLIB, and in-browser recording</li>
+      <li>Hosts can lock a room; known members can still rejoin</li>
+    </ul>
+  </template>
+
+  <template id="more-hotel">
+    <h3>Hotel Booking API</h3>
+    <p class="project-role">CertiCode Internship</p>
+    <div class="dialog-gallery">
+      <figure>
+        <pre class="project-code dialog-code"><code><span class="code-dim">POST /api/bookings</span>
+{ "room_id": 1, "guest_name": "Andrea Villanueva", "guest_email": "...",
+  "check_in": "2026-12-20", "check_out": "2026-12-23" }
+
+<span class="code-ok">201 Created</span>
+{ "nights": 3, "total_price": "10500.00", "status": "pending" }
+
+<span class="code-dim">POST /api/bookings</span>
+{ "room_id": 1, "guest_name": "...", "check_in": "2026-12-22", "check_out": "2026-12-24" }
+
+<span class="code-err">422 Unprocessable Content</span>
+{ "errors": { "room_id": ["This room is already booked for the selected dates."] } }</code></pre>
+        <figcaption>Real responses: the second booking overlaps the first, so it's rejected</figcaption>
+      </figure>
+    </div>
+    <ul class="project-highlights">
+      <li>Full CRUD for rooms and bookings, with filters for status, room, guest, and dates</li>
+      <li>Availability search for a date range, by room type and minimum capacity</li>
+      <li>The server computes nights and total price; clients never send a price</li>
+      <li>Cancelling keeps the booking as history and frees the dates</li>
+    </ul>
+  </template>
+
+  <template id="more-pos">
+    <h3>Excel POS System</h3>
+    <p class="project-role">Freelance Client Work</p>
+    <div class="dialog-gallery">
+      <figure><img src="assets/images/pos.webp" alt="POS screen with a sample order" loading="lazy"><figcaption>Order screen: add items, then totals and change compute automatically</figcaption></figure>
+      <figure><img src="assets/images/pos-products.webp" alt="Product price list sheet" loading="lazy"><figcaption>The product list the order screen looks prices up from</figcaption></figure>
+    </div>
+    <ul class="project-highlights">
+      <li>Unit prices fill in from the product list as soon as an item is picked</li>
+      <li>Buttons for add item, remove last, new transaction, print receipt, and save as PDF</li>
+      <li>Numbered receipts with date and time</li>
+    </ul>
+    <p class="link-note">Screenshot shows a sample order.</p>
   </template>
 
 </main>
