@@ -51,7 +51,6 @@
     <a href="#top" class="nav-brand">MN<span class="nav-brand-dot">.</span></a>
     <nav class="nav-links">
       <a href="#about" data-nav-link="about">About</a>
-      <a href="#skills" data-nav-link="skills">Skills</a>
       <a href="#projects" data-nav-link="projects">Projects</a>
       <a href="#credentials" data-nav-link="credentials">Credentials</a>
       <a href="#contact" data-nav-link="contact">Contact</a>
@@ -73,18 +72,23 @@
       <span class="aurora-blob aurora-3"></span>
     </div>
     <div class="hero-inner">
-      <p class="eyebrow"><span class="pulse-dot"></span> BSIT Student &middot; Occidental Mindoro State University</p>
-      <h1 class="hero-title" data-split>
-        I build systems that<br>
-        <span class="accent">track, record, and run</span> real processes.
-      </h1>
-      <p class="hero-sub">
-        Backend-leaning full-stack developer working across Laravel, ASP.NET, and embedded IoT.
-        Currently deepening my cybersecurity practice alongside coursework.
-      </p>
-      <div class="hero-actions">
-        <a href="#projects" class="btn btn-primary">View Projects</a>
-        <a href="#contact" class="btn btn-ghost">Get in Touch</a>
+      <div class="hero-split">
+        <div class="hero-copy">
+          <p class="eyebrow">BSIT Student &middot; Occidental Mindoro State University</p>
+          <h1 class="hero-title" data-split>
+            I build systems that
+            <span class="accent">track, record, and run</span> real processes.
+          </h1>
+          <p class="hero-sub">
+            Backend-leaning full-stack developer working across Laravel, ASP.NET, and embedded IoT.
+            Currently deepening my cybersecurity practice alongside coursework.
+          </p>
+          <div class="hero-actions">
+            <a href="#projects" class="btn btn-primary">View Projects</a>
+            <a href="#contact" class="btn btn-ghost">Get in Touch</a>
+          </div>
+        </div>
+        <img class="hero-photo" src="assets/images/portrait.webp" alt="Miles Natad" width="600" height="720">
       </div>
 
       <div class="tools-bar">
@@ -134,7 +138,7 @@
   <!-- ABOUT -->
   <section class="section reveal" id="about">
     <div class="section-inner">
-      <p class="section-eyebrow">01 - About</p>
+      <h2 class="section-title">About me</h2>
       <div class="about-grid">
         <div class="about-text">
           <p>
@@ -152,9 +156,35 @@
             I'm currently expanding into cybersecurity, treating it as a core part of how I build,
             not an afterthought.
           </p>
+
+          <div class="skills-grid" id="skills">
+            <div class="skill-group">
+              <h3>Languages</h3>
+              <ul class="tag-list">
+                <li>Java</li><li>C#</li><li>Python</li><li>C++</li><li>JavaScript</li>
+              </ul>
+            </div>
+            <div class="skill-group">
+              <h3>Web &amp; Backend</h3>
+              <ul class="tag-list">
+                <li>Laravel</li><li>PHP</li><li>ASP.NET</li><li>HTML5</li><li>CSS3</li>
+              </ul>
+            </div>
+            <div class="skill-group">
+              <h3>Data</h3>
+              <ul class="tag-list">
+                <li>MySQL</li><li>Excel / VBA</li>
+              </ul>
+            </div>
+            <div class="skill-group">
+              <h3>Hardware &amp; IoT</h3>
+              <ul class="tag-list">
+                <li>ESP32</li><li>Arduino IDE</li><li>UHF RFID</li>
+              </ul>
+            </div>
+          </div>
         </div>
         <div class="about-meta">
-          <img class="about-photo" src="assets/images/portrait.webp" alt="Miles Natad" width="600" height="720">
           <div class="meta-card">
             <span class="meta-label">Focus</span>
             <span class="meta-value">Backend &amp; Systems</span>
@@ -172,50 +202,9 @@
     </div>
   </section>
 
-  <!-- SKILLS -->
-  <section class="section section-alt reveal" id="skills">
-    <div class="section-inner">
-      <p class="section-eyebrow">02 - Skills</p>
-      <h2 class="section-title">What I work with</h2>
-
-      <div class="skills-grid">
-
-        <div class="skill-group">
-          <h3>Languages</h3>
-          <ul class="tag-list">
-            <li>Java</li><li>C#</li><li>Python</li><li>C++</li><li>JavaScript</li>
-          </ul>
-        </div>
-
-        <div class="skill-group">
-          <h3>Web &amp; Backend</h3>
-          <ul class="tag-list">
-            <li>Laravel</li><li>PHP</li><li>ASP.NET</li><li>HTML5</li><li>CSS3</li>
-          </ul>
-        </div>
-
-        <div class="skill-group">
-          <h3>Data</h3>
-          <ul class="tag-list">
-            <li>MySQL</li><li>Excel / VBA</li>
-          </ul>
-        </div>
-
-        <div class="skill-group">
-          <h3>Hardware &amp; IoT</h3>
-          <ul class="tag-list">
-            <li>ESP32</li><li>Arduino IDE</li><li>UHF RFID</li>
-          </ul>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
   <!-- PROJECTS -->
-  <section class="section reveal" id="projects">
+  <section class="section section-alt reveal" id="projects">
     <div class="section-inner">
-      <p class="section-eyebrow">03 - Projects</p>
       <h2 class="section-title">Selected work</h2>
 
       <div class="project-carousel">
@@ -228,11 +217,10 @@
         <article class="project-card project-slide" data-glow data-more="capstone">
           <div class="project-media">
             <img src="assets/images/capstone-dashboard.webp" alt="RFID monitoring admin dashboard with daily entry and exit counts and a 7-day chart" style="object-position: left top">
-            <span class="status-badge status-live">Live</span>
           </div>
           <div class="project-body">
             <h3>IoT Student Entry/Exit Monitoring System</h3>
-            <p class="project-role">Capstone Project</p>
+            <p class="project-role">Capstone Project <span class="status-badge status-live">Live</span></p>
             <p class="project-desc">
               An attendance-tracking system built around UHF RFID hardware. Students, teachers, and
               admins each get a distinct dashboard. Every entry, exit, and staff login/logout is
@@ -258,11 +246,10 @@
         <article class="project-card project-slide" data-glow data-more="thrive">
           <div class="project-media">
             <img src="assets/images/thrive-dashboard.webp" alt="Thrive dashboard showing balance, cash flow chart, and spending by category" style="object-position: left top">
-            <span class="status-badge status-live">In Use</span>
           </div>
           <div class="project-body">
             <h3>Thrive</h3>
-            <p class="project-role">Personal Project</p>
+            <p class="project-role">Personal Project <span class="status-badge status-live">In Use</span></p>
             <p class="project-desc">
               A self-hosted money tracker for a small group. Budgets, shared books with split
               expenses, recurring transactions, and receipt scanning, with all data in one
@@ -287,11 +274,10 @@
         <article class="project-card project-slide" data-glow>
           <div class="project-media">
             <img src="assets/images/karaoke.webp" alt="Karaoke room with a connected guest, chat, a playing karaoke video, and synced lyrics" style="object-position: center top">
-            <span class="status-badge status-live">Complete</span>
           </div>
           <div class="project-body">
             <h3>Personal Karaoke</h3>
-            <p class="project-role">Personal Project</p>
+            <p class="project-role">Personal Project <span class="status-badge status-live">Complete</span></p>
             <p class="project-desc">
               A real-time karaoke room for up to 6 friends. Everyone watches the same YouTube
               video in sync, follows the same lyrics, and sings together on a live call.
@@ -326,7 +312,6 @@ room 204, Dec 22 to 24
                  for the selected dates."]
   }
 }</code></pre>
-            <span class="status-badge status-client">Internship</span>
           </div>
           <div class="project-body">
             <h3>Hotel Booking API</h3>
@@ -353,7 +338,6 @@ room 204, Dec 22 to 24
         <article class="project-card project-slide" data-glow>
           <div class="project-media">
             <img src="assets/images/pos.webp" alt="G4 Store Excel POS with a sample order, totals, and change computed" style="object-position: right top">
-            <span class="status-badge status-client">Freelance</span>
           </div>
           <div class="project-body">
             <h3>Excel POS System</h3>
@@ -398,7 +382,6 @@ room 204, Dec 22 to 24
   <!-- CREDENTIALS -->
   <section class="section reveal" id="credentials">
     <div class="section-inner">
-      <p class="section-eyebrow">04 - Credentials</p>
       <h2 class="section-title">Certifications &amp; awards</h2>
 
       <div class="credentials-grid">
@@ -474,7 +457,6 @@ room 204, Dec 22 to 24
   <!-- CONTACT -->
   <section class="section section-alt reveal" id="contact">
     <div class="section-inner">
-      <p class="section-eyebrow">05 - Contact</p>
       <h2 class="section-title">Let's talk</h2>
       <p class="contact-sub">Open to freelance work, internships, and anything that involves building real systems.</p>
 

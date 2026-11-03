@@ -39,7 +39,7 @@ if ('IntersectionObserver' in window) {
 
 // Active nav link highlighting based on section in view
 const navLinks = document.querySelectorAll('[data-nav-link]');
-const trackedSections = ['about', 'skills', 'projects', 'credentials', 'contact']
+const trackedSections = ['about', 'projects', 'credentials', 'contact']
   .map(id => document.getElementById(id))
   .filter(Boolean);
 

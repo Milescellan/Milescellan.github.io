@@ -7,7 +7,6 @@
   --bg-panel-2: #132726;
   --teal-600: #0F6466;
   --teal-400: #1E8C8A;
-  --teal-glow: rgba(30, 140, 138, 0.35);
   --amber: #E3A857;
   --amber-bright: #F2C275;
   --text-primary: #EAF2F0;
@@ -250,6 +249,23 @@ img { max-width: 100%; display: block; }
   margin: 0 auto;
 }
 
+.hero-split {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  align-items: center;
+  gap: 48px;
+}
+
+/* Cutout portrait fades into the page at the bottom, so it sits on the aurora, not in a box. */
+.hero-photo {
+  justify-self: end;
+  width: 100%;
+  max-width: 360px;
+  height: auto;
+  -webkit-mask-image: radial-gradient(ellipse 70% 80% at 50% 38%, #000 62%, transparent 100%);
+          mask-image: radial-gradient(ellipse 70% 80% at 50% 38%, #000 62%, transparent 100%);
+}
+
 .eyebrow {
   display: inline-flex;
   align-items: center;
@@ -265,26 +281,12 @@ img { max-width: 100%; display: block; }
   background: var(--bg-panel);
 }
 
-.pulse-dot {
-  width: 7px; height: 7px;
-  border-radius: 50%;
-  background: var(--amber-bright);
-  box-shadow: 0 0 8px 2px var(--teal-glow);
-  animation: pulse 2s ease-in-out infinite;
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.4; }
-}
-
 .hero-title {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: clamp(2.2rem, 5.5vw, 4rem);
+  font-size: clamp(2.2rem, 4.6vw, 3.5rem);
   line-height: 1.12;
   letter-spacing: -0.01em;
-  max-width: 820px;
   margin-bottom: 28px;
 }
 
@@ -487,14 +489,6 @@ img { max-width: 100%; display: block; }
   margin: 0 auto;
 }
 
-.section-eyebrow {
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  color: var(--amber);
-  letter-spacing: 0.08em;
-  margin-bottom: 16px;
-}
-
 .section-title {
   font-family: var(--font-display);
   font-weight: 600;
@@ -523,14 +517,8 @@ img { max-width: 100%; display: block; }
   gap: 16px;
 }
 
-.about-photo {
-  width: 100%;
-  max-width: 280px;
-  height: auto;
-  aspect-ratio: 5 / 6;
-  object-fit: cover;
-  border-radius: var(--radius);
-  border: 1px solid var(--border);
+.about-text .skills-grid {
+  margin-top: 40px;
 }
 
 .meta-card {
@@ -851,19 +839,17 @@ body:has(.project-dialog[open]) { overflow: hidden; }
 }
 
 .status-badge {
-  position: absolute;
-  top: 16px;
-  left: 16px;
+  display: inline-block;
+  margin-left: 8px;
+  vertical-align: 1px;
   font-family: var(--font-mono);
-  font-size: 0.7rem;
-  padding: 5px 12px;
+  font-size: 0.68rem;
+  padding: 2px 10px;
   border-radius: 999px;
   letter-spacing: 0.03em;
 }
 
 .status-live { background: var(--teal-600); color: #E8FBFA; }
-.status-dev { background: var(--amber); color: #14100a; }
-.status-client { background: var(--bg-panel); color: var(--amber-bright); border: 1px solid var(--border-strong); }
 
 .project-body {
   padding: 32px;
@@ -1151,6 +1137,8 @@ body:has(.project-dialog[open]) { overflow: hidden; }
    RESPONSIVE
    ============================================ */
 @media (max-width: 860px) {
+  .hero-split { grid-template-columns: 1fr; gap: 24px; }
+  .hero-photo { order: -1; justify-self: start; max-width: 180px; }
   .about-grid { grid-template-columns: 1fr; gap: 40px; }
   .project-card { grid-template-columns: 1fr; }
   .project-media { min-height: 180px; }
