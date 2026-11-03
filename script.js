@@ -245,9 +245,15 @@ if (projectDialog) {
     step = null;
     if (!gallery) return;
     const figures = Array.from(gallery.querySelectorAll('figure'));
+    const hasImages = figures.some((fig) => fig.querySelector('img'));
+    if (figures.length < 2 && !hasImages) return;
     let current = 0;
+
+    // Controls sit under the image, never on top of it.
+    const controls = document.createElement('div');
+    controls.className = 'gallery-controls';
     const dots = document.createElement('div');
-    dots.className = 'carousel-dots gallery-dots';
+    dots.className = 'gallery-dots';
 
     const show = (index) => {
       current = (index + figures.length) % figures.length;
@@ -255,32 +261,39 @@ if (projectDialog) {
       Array.from(dots.children).forEach((dot, i) => dot.classList.toggle('active', i === current));
     };
 
+    // The whole figure goes full screen so it can carry its own close button.
     figures.forEach((fig) => {
       const img = fig.querySelector('img');
       if (!img) return;
-      const expand = () => img.requestFullscreen?.();
-      img.addEventListener('click', expand);
-      fig.prepend(makeButton('gallery-expand', 'View full screen', '&#x2922;'));
-      fig.firstChild.addEventListener('click', expand);
+      const exit = makeButton('gallery-exit', 'Exit full screen', '&times;');
+      exit.addEventListener('click', () => document.exitFullscreen());
+      fig.prepend(exit);
+      img.addEventListener('click', () => {
+        if (document.fullscreenElement) document.exitFullscreen();
+        else fig.requestFullscreen?.();
+      });
     });
 
     if (figures.length > 1) {
       step = (delta) => show(current + delta);
-      const prev = makeButton('gallery-arrow gallery-prev', 'Previous image', '&larr;');
-      const next = makeButton('gallery-arrow gallery-next', 'Next image', '&rarr;');
+      const prev = makeButton('gallery-arrow', 'Previous image', '&larr;');
+      const next = makeButton('gallery-arrow', 'Next image', '&rarr;');
       prev.addEventListener('click', () => step(-1));
       next.addEventListener('click', () => step(1));
-      const nav = document.createElement('div');
-      nav.className = 'gallery-nav';
-      nav.append(prev, next);
-      gallery.append(nav);
       figures.forEach((_, i) => {
         const dot = makeButton('carousel-dot', `Show image ${i + 1}`, '');
         dot.addEventListener('click', () => show(i));
         dots.append(dot);
       });
-      gallery.after(dots);
+      controls.append(prev, dots, next);
     }
+
+    if (hasImages) {
+      const expand = makeButton('gallery-expand', 'View full screen', '&#x2922; Full screen');
+      expand.addEventListener('click', () => figures[current].requestFullscreen?.());
+      controls.append(expand);
+    }
+    gallery.after(controls);
     show(0);
   };
 

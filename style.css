@@ -249,23 +249,6 @@ img { max-width: 100%; display: block; }
   margin: 0 auto;
 }
 
-.hero-split {
-  display: grid;
-  grid-template-columns: 1.5fr 1fr;
-  align-items: center;
-  gap: 48px;
-}
-
-/* Cutout portrait fades into the page at the bottom, so it sits on the aurora, not in a box. */
-.hero-photo {
-  justify-self: end;
-  width: 100%;
-  max-width: 360px;
-  height: auto;
-  -webkit-mask-image: radial-gradient(ellipse 70% 80% at 50% 38%, #000 62%, transparent 100%);
-          mask-image: radial-gradient(ellipse 70% 80% at 50% 38%, #000 62%, transparent 100%);
-}
-
 .eyebrow {
   display: inline-flex;
   align-items: center;
@@ -284,9 +267,10 @@ img { max-width: 100%; display: block; }
 .hero-title {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: clamp(2.2rem, 4.6vw, 3.5rem);
+  font-size: clamp(2.2rem, 5.5vw, 4rem);
   line-height: 1.12;
   letter-spacing: -0.01em;
+  max-width: 820px;
   margin-bottom: 28px;
 }
 
@@ -813,10 +797,39 @@ body:has(.project-dialog[open]) { overflow: hidden; }
   cursor: zoom-in;
 }
 
-.dialog-gallery img:fullscreen {
-  border: 0;
-  border-radius: 0;
+.dialog-gallery figure:fullscreen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: var(--bg-deep);
+}
+
+.dialog-gallery figure:fullscreen img {
+  width: auto;
+  max-width: 100%;
+  max-height: calc(100vh - 96px);
+  aspect-ratio: auto;
   cursor: zoom-out;
+}
+
+.gallery-exit { display: none; }
+
+.dialog-gallery figure:fullscreen .gallery-exit {
+  display: block;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--bg-panel-2);
+  color: var(--text-primary);
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
 }
 
 .dialog-code {
@@ -835,50 +848,59 @@ body:has(.project-dialog[open]) { overflow: hidden; }
   color: var(--text-muted);
 }
 
-/* Same 16:10 box as the image, so the arrows center on the image, not the caption. */
-.gallery-nav {
-  position: absolute;
-  inset: 0 0 auto;
-  aspect-ratio: 16 / 10;
+.gallery-controls {
+  position: relative;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 0 12px;
-  pointer-events: none;
+  justify-content: center;
+  gap: 16px;
+  min-height: 36px;
+  margin: -8px auto 24px;
+  max-width: min(100%, calc(52dvh * 1.6));
+}
+
+.gallery-dots {
+  display: flex;
+  gap: 10px;
 }
 
 .gallery-arrow,
 .gallery-expand {
-  pointer-events: auto;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
   border: 1px solid var(--border);
-  background: rgba(15, 31, 29, 0.85);
+  background: var(--bg-panel-2);
   color: var(--text-primary);
-  font-size: 1.1rem;
   cursor: pointer;
   transition: border-color 0.2s ease, color 0.2s ease;
 }
 
-.gallery-arrow:hover,
-.gallery-expand:hover {
-  border-color: var(--border-strong);
-  color: var(--amber-bright);
+.gallery-arrow {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  font-size: 1rem;
 }
 
 .gallery-expand {
   position: absolute;
-  z-index: 1;
-  top: 12px;
-  right: 12px;
+  right: 0;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  color: var(--text-muted);
 }
 
-.gallery-dots { margin-top: -8px; margin-bottom: 20px; }
+.gallery-arrow:hover,
+.gallery-expand:hover,
+.gallery-exit:hover {
+  border-color: var(--border-strong);
+  color: var(--amber-bright);
+}
 
 @media (max-width: 640px) {
   .dialog-body { padding: 24px 20px; }
-  .gallery-arrow { width: 34px; height: 34px; }
+  .gallery-controls { flex-wrap: wrap; }
+  .gallery-expand { position: static; }
 }
 
 .code-dim { color: var(--text-faint); }
@@ -1192,8 +1214,6 @@ body:has(.project-dialog[open]) { overflow: hidden; }
    RESPONSIVE
    ============================================ */
 @media (max-width: 860px) {
-  .hero-split { grid-template-columns: 1fr; gap: 24px; }
-  .hero-photo { order: -1; justify-self: start; max-width: 180px; }
   .about-grid { grid-template-columns: 1fr; gap: 40px; }
   .project-card { grid-template-columns: 1fr; }
   .project-media { min-height: 180px; }
